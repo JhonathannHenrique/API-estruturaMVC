@@ -1,27 +1,59 @@
-const Project = require('../models/project')
+const Project = require('../models/project');
 
 class ProjectController {
-
-    static insert(req, res) {
-        const { id, name, descrition} = req.body
-
-        const project = new Project(id, name, descrition)
-        project.save()
-
-        res.status(201).json(project)
+    async criarProjeto(name, descrition) {
+        if (
+            name === undefined
+            || descrition === undefined
+        ) {
+            throw new Error('Nome e descrição são obrigatórios');
+        }
+        return project;
     }
 
-    static findAll(req, res) {
-        const projects = Project.findAll()
+    async buscarPorId(id) {
+        if (id === undefined) {
+            throw new Error('Id é obrigatório');
+        }
 
-        res.json(projects)
+        const project = await Project.findByPk(id);
+
+        if (!project) {
+            throw new Error('Projeto não encontrado');
+        }
+        return project;
     }
 
-    static deleteProject(req, res) {
-        const id = parseInt(req.params.id)
-        Project.delete(id)
-        res.status(204).send()
-      }
+    async alterarProjeto(id, name, descrition) {
+        if (
+            id === undefined
+            || name === undefined
+            || descrition === undefined
+        ) {
+            throw new Error('Id, nome, descrição são obrigatórios');
+        }
+
+        const project = await this.buscarPorId(id);
+
+        project.name = name;
+        project.descrition = descrition;
+        project.save();
+
+        return project;
+    }
+
+    async deletarProjeto(id) {
+        if (id === undefined) {
+            throw new Error('Id é obrigatório');
+        }
+        const project = await this.buscarPorId(id);
+
+        project.destroy();
+    }
+
+    async listarProjetos() {
+        return Project.findAll();
+    }
 }
 
-module.exports = ProjectController;
+module.exports = new ProjectController();

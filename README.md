@@ -25,7 +25,7 @@ Adicione os seguintes recursos à API de usuários:
   * Verifica se o email e senha são válidos.
   * Dica: use bcrypt.compare(senhaDigitada, senhaHashBanco).
   * Retorna mensagem de sucesso com JWT ou erro.
-
+ 
 # Estrutura do Projeto (atualizada)
 project/
 │-- src/
@@ -51,6 +51,7 @@ project/
 * Rota de login e cadastro utilizando bcrypt.
 * README explicando como rodar o projeto localmente.
 * Link do repositório no GitHub.
+
 
 # Instalações necessárias:
 

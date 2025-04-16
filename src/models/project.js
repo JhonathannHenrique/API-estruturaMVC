@@ -1,22 +1,21 @@
-const projects = []
+const database = require('../config/database');
 
 class Project {
-    constructor(id, name, descrition) {
-        this.id = id
-        this.name = name
-        this.descrition = descrition    }
-
-    save() {
-        projects.push(this)
+    constructor() {
+        this.model = database.define('projects', {
+            id: {
+                type: database.Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            name: {
+                type: database.Sequelize.STRING
+            },
+            descrition: {
+                type: database.Sequelize.STRING
+            }
+        });
     }
-
-    static findAll() {
-        return projects
-    }
-
-    static delete(id) {
-        Project.projects = Project.projects.filter(project => project.id !== id)
-      }
 }
 
-module.exports = Project
+module.exports = (new Project).model;

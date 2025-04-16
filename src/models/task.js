@@ -1,25 +1,27 @@
-const tasks = []
+const database = require('../config/database');
 
 class Task {
-    constructor(id, title, status, id_project, id_user) {
-        this.id = id
-        this.title = title
-        this.status = status
-        this.id_project = id_project
-        this.id_user = id_user
+    constructor() {
+        this.model = database.define('tasks', {
+            id: {
+                type: database.Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            title: {
+                type: database.Sequelize.STRING
+            },
+            status: {
+                type: database.Sequelize.STRING
+            },
+            id_project: {
+                type: database.Sequelize.INTEGER
+            },
+            id_user: {
+                type: database.Sequelize.INTEGER
+            }
+        });
     }
-
-    save() {
-        tasks.push(this)
-    }
-
-    static findAll() {
-        return tasks
-    }
-
-    static delete(id) {
-        Task.tasks = Task.tasks.filter(task => task.id !== id)
-      }
 }
 
-module.exports = Task
+module.exports = (new Task).model;

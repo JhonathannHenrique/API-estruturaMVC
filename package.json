@@ -1,0 +1,29 @@
+{
+  "name": "prova-mvc",
+  "version": "1.0.0",
+  "description": "Você irá evoluir a API REST criada anteriormente, substituindo o armazenamento em arrays pela persistência de dados com MySQL utilizando Sequelize ORM.\r Além disso, será implementada uma estrutura de autenticação com hash de senha utilizando bcrypt e uma rota de login que valida os dados do usuário.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JhonathannHenrique/Prova-MVC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JhonathannHenrique/Prova-MVC/issues"
+  },
+  "homepage": "https://github.com/JhonathannHenrique/Prova-MVC#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.0",
+    "sequelize": "^6.37.7"
+  }
+}
