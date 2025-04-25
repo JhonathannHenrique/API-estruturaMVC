@@ -1,6 +1,7 @@
 const Project = require('../models/project');
 
 class ProjectController {
+
     async criarProjeto(name, descrition) {
         if (
             name === undefined
@@ -8,6 +9,8 @@ class ProjectController {
         ) {
             throw new Error('Nome e descrição são obrigatórios');
         }
+        const project = await Project.create({ name, descrition });
+
         return project;
     }
 

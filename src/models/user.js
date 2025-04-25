@@ -16,7 +16,11 @@ class User {
             },
             senha: {
                 type: database.Sequelize.STRING
-            }
+            },
+            // token: {
+            //     type: database.Sequelize.STRING,
+            //     allowNull: true
+            // }
         });
     }
 }

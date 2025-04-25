@@ -15,15 +15,17 @@ app.post('/login', userApi.login);
 app.post('/users', userApi.criarUsuario);
 
 // Aplica a validação do token para as rotas abaixo
-app.use(userApi.validarToken);
+//app.use(userApi.validarToken);
 app.get('/users', userApi.listarUsuario);
 app.put('/users/:id', userApi.alterarUsuario);
 app.delete('/users/:id', userApi.deletarUsuario);
 
+app.post('/projects', ProjectApi.criarProjeto);
 app.get('/projects', ProjectApi.listarProjetos);
 app.put('/projects/:id', ProjectApi.alterarProjeto);
 app.delete('/projects/:id', ProjectApi.deletarProjeto);
 
+app.post('/tasks', TaskApi.criarTarefa);
 app.get('/tasks', TaskApi.listarTarefas);
 app.put('/tasks/:id', TaskApi.alterarTarefa);
 app.delete('/tasks/:id', TaskApi.deletarTarefa);

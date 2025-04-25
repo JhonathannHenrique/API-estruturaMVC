@@ -6,7 +6,7 @@ class ProjectApi {
         const descrition = req.body.descrition;
 
         try {
-            const project = await controller.criarProjeto(nome, descrition);
+            const project = await controller.criarProjeto(name, descrition);
             return res.status(201).send(project);
         } catch (error) {
             return res.status(400).send({ error: error.message })

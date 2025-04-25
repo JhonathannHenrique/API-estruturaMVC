@@ -1,6 +1,7 @@
 const Task = require('../models/task');
 
 class TaskController {
+
     async criarTarefa(title, status, id_project, id_user) {
         if (
             title === undefined
@@ -11,6 +12,8 @@ class TaskController {
         ) {
             throw new Error('Titulo, status, projeto e usuario são obrigatórios');
         }
+        const task = await Task.create({ title, status, id_project, id_user });
+
         return task;
     }
 
@@ -27,7 +30,7 @@ class TaskController {
         return task;
     }
 
-    async alterarProjeto(id, title, status, id_project, id_user) {
+    async alterarTarefa(id, title, status, id_project, id_user) {
         if (
             id === undefined
             || title === undefined
