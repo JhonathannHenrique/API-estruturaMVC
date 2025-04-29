@@ -98,33 +98,29 @@ class UserController {
 
         // Gera o token a partir da assinatura com a chave secreta
         const jwtToken = jwt.sign({ id: user.id }, JWT_SECRET_KEY);
-
-        // Salva o token no banco
-        user.token = jwtToken;
-        await user.save();
         
         return { token: jwtToken };
         
     }
 
-    // async validarToken(token) {
-    //     try {
-    //         // Decodifica e valida o token
-    //         const payload = jwt.verify(token, JWT_SECRET_KEY);
+    async validarToken(token) {
+        try {
+            // Decodifica e valida o token
+            const payload = jwt.verify(token, JWT_SECRET_KEY);
+            console.log(JSON.stringify(payload))
     
-    //         // Busca o usuário pelo ID presente no token
-    //         const user = await User.findByPk(payload.id);
+            const user = await User.findByPk(payload.id);
     
-    //         // Verifica se o token do banco é igual ao enviado
-    //         if (!user || user.token !== token) {
-    //             throw new Error('Token inválido');
-    //         }
+            if (!user) {
+                throw new Error('Token inválido');
+            }
     
-    //         return payload;
-    //     } catch (error) {
-    //         throw new Error('Token inválido');
-    //     }
-    // }
+            return payload;
+        } catch (error) {
+            console.log(error)
+            throw new Error('Token inválido');
+        }
+    }
     
 }
 

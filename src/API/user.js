@@ -59,16 +59,20 @@ class UserApi {
     }
 
     // Método para validar o token
-    // async validarToken(req, res, next) {
-    //     const token = req.headers.authorization;
+    async validarToken(req, res, next) {
+        const authorization = req.headers.authorization;
 
-    //     try {
-    //         await controller.validarToken(token);
-    //         next();
-    //     } catch (error) {
-    //         return res.status(400).send({ error: error.message })
-    //     }
-    // }
+        try {
+            // "Bearer TOKEN"
+            const splitToken = authorization.split(' ');
+            const token = splitToken[1];
+            console.log(token)
+            await controller.validarToken(token);
+            next();
+        } catch (error) {
+            return res.status(400).send({ error: error.message })
+        }
+    }
 }
 
 module.exports = new UserApi();

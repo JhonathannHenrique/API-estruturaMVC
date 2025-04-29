@@ -15,7 +15,7 @@ app.post('/login', userApi.login);
 app.post('/users', userApi.criarUsuario);
 
 // Aplica a validação do token para as rotas abaixo
-//app.use(userApi.validarToken);
+app.use(userApi.validarToken);
 app.get('/users', userApi.listarUsuario);
 app.put('/users/:id', userApi.alterarUsuario);
 app.delete('/users/:id', userApi.deletarUsuario);
@@ -39,4 +39,3 @@ database.sync({ force: false })
     .catch((error) => {
         console.error('Error connecting to the database', error);
     });
-
